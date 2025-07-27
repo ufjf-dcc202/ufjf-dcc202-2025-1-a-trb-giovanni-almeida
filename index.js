@@ -12,7 +12,16 @@ for (let i = 0; i < 12; i++) {
     for (let j = 0; j < 12; j++) {
         let espaco = document.createElement("td");
         espaco.etapa = 0;
-        espaco.classList.add("plantavel")
+        let random = Math.random();
+        if (random < 0.1) {
+            espaco.classList.add("pedra");
+        }
+        else if (random < 0.2) {
+            espaco.classList.add("mato");
+        }
+        else {
+            espaco.classList.add("plantavel");
+        }
         linha.appendChild(espaco);
     }
     jardim.appendChild(linha);
@@ -24,6 +33,7 @@ jardim.addEventListener("mousedown", (e) => {
     if (espaco.classList.contains("pedra") || espaco.classList.contains("mato")) {
         espaco.classList = "";
         espaco.classList.add("plantavel");
+        return;
     }
 
     if (semente && espaco.classList.contains("plantavel")) {
@@ -31,10 +41,14 @@ jardim.addEventListener("mousedown", (e) => {
         espaco.classList.remove("plantavel");
         espaco.classList.add("plantado");
         espaco.classList.add(semente);
+        return;
     }
 
     document.getElementById('regar').addEventListener('click', () => {
         document.querySelectorAll('#jardim td.plantado').forEach(espaco => {
+            if (espaco.classList.contains("semente1_3") || espaco.classList.contains("semente2_3") || espaco.classList.contains("semente3_3")) {
+                return;
+            }
             espaco.classList.add('irrigada');
         });
     });
