@@ -12,6 +12,8 @@ body {
     background-repeat: no-repeat;
 }
 
+
+/* INÍCIO - ESTADO INICIAL */
 table {
     table-layout: fixed;
     width: 40%;
@@ -26,39 +28,6 @@ td {
     width: 5%;
     height: auto;
     border: 1px solid black
-}
-
-.semente1 {
-    background-image: url(assets/trigo1.png);
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.semente2 {
-    background-image: url(assets/alface1.png);
-    background-size: 100% 100%;;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-/* .semente3 {
-    background-image: url(trigo1.png);
-    background-size: 100% 100%; 
-    background-position: center;
-    background-repeat: no-repeat;
-} */
-
-.plantavel {
-    background-color: #e28c37;
-}
-
-.plantado {
-    background-color: #b86f27;
-}
-
-.irrigada {
-    background-color: #915419
 }
 
 .pedra {
@@ -76,17 +45,85 @@ td {
     background-position: center;
     background-repeat: no-repeat;
 }
+/* FIM - ESTADO INICIAL */
 
-.semente1_2 {
-    background-image: url(assets/semente1_2.png);
+
+/* INÍCIO - PLANTAS */
+.abobora1 {
+    background-image: url(assets/abobora1.png);
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-.semente1_3 {
-    background-image: url(assets/semente1_3.png);
+.abobora2 {
+    background-image: url(assets/abobora2.png);
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
 }
+
+.abobora3 {
+    background-image: url(assets/abobora3.png);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.alface1 {
+    background-image: url(assets/alface1.png);
+    background-size: 100% 100%;;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.alface2 {
+    background-image: url(assets/alface2.png);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.alface3 {
+    background-image: url(assets/alface3.png);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.nabo1 {
+    background-image: url(assets/nabo1.png);
+    background-size: 100% 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.nabo2 {
+    background-image: url(assets/nabo2.png);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.nabo3 {
+    background-image: url(assets/nabo3.png);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+/* FIM - PLANTAS */
+
+
+/* INÍCIO - ESTADOS */
+.plantavel {
+    background-color: #e28c37;
+}
+
+.plantado {
+    background-color: #b86f27;
+}
+
+.irrigada {
+    background-color: #915419
+}
+/* FIM - ESTADOS */
