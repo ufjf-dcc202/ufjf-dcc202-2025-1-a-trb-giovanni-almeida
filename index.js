@@ -5,15 +5,17 @@ const stagePlantas = [{ "planta": "abobora1", "stages": 2 }, { "planta": "abobor
 { "planta": "nabo1", "stages": 3 }, { "planta": "nabo2", "stages": 3 }, { "planta": "nabo3", "stages": 1 }];
 
 
-document.getElementById('abobora').addEventListener('click', () => semente = 'abobora1');
-document.getElementById('alface').addEventListener('click', () => semente = 'alface1');
-document.getElementById('nabo').addEventListener('click', () => semente = 'nabo1');
-document.getElementById('regar').addEventListener('click', regar);
+document.getElementById('abobora').addEventListener('click', () => itemAtual = 'abobora1');
+document.getElementById('alface').addEventListener('click', () => itemAtual = 'alface1');
+document.getElementById('nabo').addEventListener('click', () => itemAtual = 'nabo1');
+// document.getElementById('regar').addEventListener('click', regar);
 document.getElementById('passarTempo').addEventListener('click', passarTempo);
+document.getElementById('colher').addEventListener('click', () => itemAtual = "foice");
+document.getElementById('regar').addEventListener('click', () => itemAtual = "irrigador");
 
 
-let semente = null;
-
+let dinheiro = 1;
+let itemAtual = null;
 
 for (let i = 0; i < 12; i++) {
     let linha = document.createElement("tr");
@@ -45,23 +47,34 @@ jardim.addEventListener("mousedown", (e) => {
         return;
     }
 
-    if (espaco.classList.contains("plantavel") && plantas.includes(semente)) {
+    if (espaco.classList.contains("plantavel") && plantas.includes(itemAtual)) {
         espaco.classList.remove("plantavel");
         espaco.classList.add("plantado");
-        espaco.classList.add(semente);
+        espaco.classList.add(itemAtual);
         return;
     }
-})
 
-function regar() {
-    document.querySelectorAll('#jardim td.plantado').forEach(espaco => {
+    if (itemAtual === "irrigador") {
         // Última etapa, a planta não é regada
         if (espaco.classList.contains("abobora3") || espaco.classList.contains("alface3") || espaco.classList.contains("nabo3")) {
             return;
         }
-        espaco.classList.add('irrigada');
-    });
-}
+
+        if (espaco.classList.contains("plantado")) {
+            espaco.classList.add('irrigada');
+            return;
+        }
+    }
+
+    if (itemAtual === "foice") {
+        if (espaco.classList.contains("abobora3") || espaco.classList.contains("alface3") || espaco.classList.contains("nabo3")) {
+            dinheiro = dinheiro + 10;
+            espaco.classList = "";
+            espaco.classList.add("plantavel");
+            return;
+        }
+    }
+})
 
 function passarTempo() {
     document.querySelectorAll('#jardim td.irrigada').forEach(espaco => {
