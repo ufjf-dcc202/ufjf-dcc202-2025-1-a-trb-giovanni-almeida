@@ -7,7 +7,7 @@ body {
     align-items: center;
     height: 100vh;
     background-image: url(bg.jpg);
-    background-size: cover; 
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -28,23 +28,16 @@ td {
     border: 1px solid black
 }
 
-.teste {
-    background-image: url(bg.jpg);
-    background-size: cover; 
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
 .semente1 {
     background-image: url(trigo1.png);
-    background-size: cover; 
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 .semente2 {
     background-image: url(alface1.png);
-    background-size: cover; 
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -55,3 +48,37 @@ td {
     background-position: center;
     background-repeat: no-repeat;
 } */
+
+.plantavel {
+    background-color: #e28c37;
+}
+
+.plantado {
+    background-color: #b86f27;
+}
+
+.irrigada {
+    background-color: #915419
+}
+
+.pedra {
+    background-image: url(pedra.png);
+}
+
+.mato {
+    background-image: url(mato.png);
+}
+
+.semente1_2 {
+    background-image: url(semente1_2.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.semente1_3 {
+    background-image: url(semente1_3.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
