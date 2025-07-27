@@ -1,5 +1,9 @@
 const jardim = document.getElementById("jardim");
+
 const plantas = ["abobora1", "alface1", "nabo1"];
+const stagePlantas = [{"planta": "abobora1", "stages": 2}, {"planta": "abobora2", "stages": 2}, {"planta": "abobora3", "stages": 1},
+                    {"planta": "alface1", "stages": 3}, {"planta": "alface2", "stages": 2}, {"planta": "alface3", "stages": 2},
+                    {"planta": "nabo1", "stages": 3}, {"planta": "nabo2", "stages": 3}, {"planta": "nabo3", "stages": 1}];
 
 
 document.getElementById('abobora').addEventListener('click', () => acao = 'abobora1');
@@ -14,7 +18,7 @@ for (let i = 0; i < 12; i++) {
     let linha = document.createElement("tr");
     for (let j = 0; j < 12; j++) {
         let espaco = document.createElement("td");
-        espaco.etapa = 0;
+        espaco.dataset.etapa = 0;
         let random = Math.random();
         if (random < 0.1) {
             espaco.classList.add("pedra");
@@ -63,6 +67,7 @@ jardim.addEventListener("mousedown", (e) => {
                 espaco.classList.remove("abobora1");
                 espaco.classList.add("abobora2");
                 espaco.classList.remove("irrigada");
+                espaco.dataset.etapa = 0;
                 return;
             }
 
@@ -70,6 +75,7 @@ jardim.addEventListener("mousedown", (e) => {
                 espaco.classList.remove("abobora2");
                 espaco.classList.add("abobora3");
                 espaco.classList.remove("irrigada");
+                espaco.dataset.etapa = 0;
                 return;
             }
 
@@ -79,6 +85,7 @@ jardim.addEventListener("mousedown", (e) => {
                 espaco.classList.remove("alface1");
                 espaco.classList.add("alface2");
                 espaco.classList.remove("irrigada");
+                espaco.dataset.etapa = 0;
                 return;
             }
 
@@ -86,6 +93,7 @@ jardim.addEventListener("mousedown", (e) => {
                 espaco.classList.remove("alface2");
                 espaco.classList.add("alface3");
                 espaco.classList.remove("irrigada");
+                espaco.dataset.etapa = 0;
                 return;
             }
 
@@ -95,6 +103,7 @@ jardim.addEventListener("mousedown", (e) => {
                 espaco.classList.remove("nabo1");
                 espaco.classList.add("nabo2");
                 espaco.classList.remove("irrigada");
+                espaco.dataset.etapa = 0;
                 return;
             }
 
@@ -102,8 +111,23 @@ jardim.addEventListener("mousedown", (e) => {
                 espaco.classList.remove("nabo2");
                 espaco.classList.add("nabo3");
                 espaco.classList.remove("irrigada");
+                espaco.dataset.etapa = 0;
                 return;
             }
+        });
+
+        document.querySelectorAll('#jardim td.plantado:not(.irrigado)').forEach(espaco => {
+            espaco.dataset.etapa++;
+            let stageMaximo = stagePlantas.find(stage => stage.planta === espaco.classList[1]);
+
+            console.log(espaco.dataset.etapa + " " + stageMaximo.stages)
+            if (espaco.dataset.etapa > stageMaximo.stages) {
+                espaco.classList = "";
+                espaco.classList.add("mato")
+            }
+            
+            // if (espaco.classList.contains())
+            
         });
     });
 })
