@@ -34,3 +34,24 @@ td {
     background-position: center;
     background-repeat: no-repeat;
 }
+
+.semente1 {
+    background-image: url(trigo1.png);
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.semente2 {
+    background-image: url(alface1.png);
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* .semente3 {
+    background-image: url(trigo1.png);
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+} */
