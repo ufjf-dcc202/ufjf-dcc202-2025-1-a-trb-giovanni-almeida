@@ -1,20 +1,30 @@
 const jardim = document.getElementById("jardim");
-const plantas = ["abobora1", "alface1", "nabo1"];
 const stagePlantas = [{ "planta": "abobora1", "stages": 2 }, { "planta": "abobora2", "stages": 2 }, { "planta": "abobora3", "stages": 1 },
-{ "planta": "alface1", "stages": 3 }, { "planta": "alface2", "stages": 2 }, { "planta": "alface3", "stages": 2 },
-{ "planta": "nabo1", "stages": 3 }, { "planta": "nabo2", "stages": 3 }, { "planta": "nabo3", "stages": 1 }];
+    { "planta": "alface1", "stages": 3 }, { "planta": "alface2", "stages": 2 }, { "planta": "alface3", "stages": 2 },
+    { "planta": "nabo1", "stages": 3 }, { "planta": "nabo2", "stages": 3 }, { "planta": "nabo3", "stages": 1 }];
+    
+let sementesAdquiridas = ["abobora1", "alface1", "nabo1"];
+let sementesDisponiveis = [
+    { nome: "tomate1", preco: 15 },
+    { nome: "cenoura1", preco: 20 },
+    { nome: "batata1", preco: 25 },
+    { nome: "morango1", preco: 30 }
+];
 
 
-document.getElementById('abobora').addEventListener('click', () => itemAtual = 'abobora1');
-document.getElementById('alface').addEventListener('click', () => itemAtual = 'alface1');
-document.getElementById('nabo').addEventListener('click', () => itemAtual = 'nabo1');
-// document.getElementById('regar').addEventListener('click', regar);
+
 document.getElementById('passarTempo').addEventListener('click', passarTempo);
+document.getElementById('semente1').addEventListener('click', () => itemAtual = 'abobora1');
+document.getElementById('semente2').addEventListener('click', () => itemAtual = 'alface1');
+document.getElementById('semente3').addEventListener('click', () => itemAtual = 'nabo1');
 document.getElementById('colher').addEventListener('click', () => itemAtual = "foice");
 document.getElementById('regar').addEventListener('click', () => itemAtual = "irrigador");
+document.getElementById("loja").addEventListener("click", abrirLoja);
+document.getElementById("fecharLoja").addEventListener("click", () => {
+    document.getElementById("lojaModal").style.display = "none";
+});
 
-
-let dinheiro = 1;
+let dinheiro = 0;
 let itemAtual = null;
 
 for (let i = 0; i < 12; i++) {
@@ -47,7 +57,7 @@ jardim.addEventListener("mousedown", (e) => {
         return;
     }
 
-    if (espaco.classList.contains("plantavel") && plantas.includes(itemAtual)) {
+    if (espaco.classList.contains("plantavel") && sementesAdquiridas.includes(itemAtual)) {
         espaco.classList.remove("plantavel");
         espaco.classList.add("plantado");
         espaco.classList.add(itemAtual);
@@ -68,7 +78,8 @@ jardim.addEventListener("mousedown", (e) => {
 
     if (itemAtual === "foice") {
         if (espaco.classList.contains("abobora3") || espaco.classList.contains("alface3") || espaco.classList.contains("nabo3")) {
-            dinheiro = dinheiro + 10;
+            dinheiro += 10;
+            atualizarDinheiro()
             espaco.classList = "";
             espaco.classList.add("plantavel");
             return;
@@ -142,4 +153,56 @@ function passarTempo() {
             espaco.classList.add("mato")
         }
     })
+}
+
+function atualizarDinheiro() {
+    document.getElementById('dinheiro').textContent = `Dinheiro: ${dinheiro}`;
+}
+
+function abrirLoja() {
+    const lista = document.getElementById("listaSementes");
+    lista.innerHTML = "";
+    sementesAdquiridas.forEach(semente => {
+        const botao = document.createElement("button");
+        botao.textContent = `${semente.charAt(0).toUpperCase() + semente.slice(1, -1)}`;
+        botao.addEventListener("click", () => comprarSemente(semente));
+        lista.appendChild(botao);
+    });
+
+    sementesDisponiveis.forEach(semente => {
+        const botao = document.createElement("button");
+        botao.textContent = `${semente.nome.charAt(0).toUpperCase() + semente.nome.slice(1, -1)} - ${semente.preco} moedas`;
+        botao.addEventListener("click", () => comprarSemente(semente));
+        lista.appendChild(botao);
+    });
+    document.getElementById("lojaModal").style.display = "flex";
+}
+
+function comprarSemente(semente) {
+    if (dinheiro < semente.preco) {
+        alert("Dinheiro insuficiente!");
+        return;
+    }
+    dinheiro -= semente.preco;
+    atualizarDinheiro();
+    sementesDisponiveis = sementesDisponiveis.filter(sementeDisponivel => sementeDisponivel.nome !== semente.nome);
+    sementesAdquiridas.push(semente.nome);
+    console.log(sementesDisponiveis)
+    
+
+
+    // Escolher botão (1,2,3) para substituir
+    const slot = prompt("Qual botão você quer substituir? (1, 2 ou 3)");
+    if (slot < 1 || slot > 3) {
+        alert("Opção inválida!");
+        return;
+    }
+
+    const botoes = [document.getElementById("semente1"), document.getElementById("semente2"), document.getElementById("semente3")];
+    const botaoEscolhido = botoes[slot - 1];
+    botaoEscolhido.textContent = semente.nome;
+    botaoEscolhido.dataset.semente = semente.nome; // salva nome para uso no plantio
+
+    alert(`${semente.nome} comprada e atribuída ao botão ${slot}!`);
+    document.getElementById("lojaModal").style.display = "none";
 }
