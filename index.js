@@ -2,7 +2,11 @@ const jardim = document.getElementById("jardim");
 const stagePlantas = [{ "planta": "abobora1", "stages": 2 }, { "planta": "abobora2", "stages": 2 }, { "planta": "abobora3", "stages": 1 },
 { "planta": "alface1", "stages": 3 }, { "planta": "alface2", "stages": 2 }, { "planta": "alface3", "stages": 2 },
 { "planta": "nabo1", "stages": 3 }, { "planta": "nabo2", "stages": 3 }, { "planta": "nabo3", "stages": 1 },
-{ "planta": "tomate1", "stages": 3 }, { "planta": "tomate2", "stages": 3 }, { "planta": "tomate3", "stages": 1 }];
+{ "planta": "tomate1", "stages": 3 }, { "planta": "tomate2", "stages": 3 }, { "planta": "tomate3", "stages": 1 },
+{ "planta": "cenoura1", "stages": 3 }, { "planta": "cenoura2", "stages": 3 }, { "planta": "cenoura3", "stages": 1 },
+{ "planta": "batata1", "stages": 3 }, { "planta": "batata2", "stages": 3 }, { "planta": "batata3", "stages": 1 },
+{ "planta": "morango1", "stages": 3 }, { "planta": "morango2", "stages": 3 }, { "planta": "morango3", "stages": 1 }];
+
 
 let sementesAdquiridas = ["abobora1", "alface1", "nabo1"];
 let sementesDisponiveis = [
@@ -13,11 +17,11 @@ let sementesDisponiveis = [
 ];
 
 
-
 document.getElementById('passarTempo').addEventListener('click', passarTempo);
 document.getElementById('semente1').addEventListener('click', () => itemAtual = document.getElementById('semente1').dataset.semente);
 document.getElementById('semente2').addEventListener('click', () => itemAtual = document.getElementById('semente2').dataset.semente);
 document.getElementById('semente3').addEventListener('click', () => itemAtual = document.getElementById('semente3').dataset.semente);
+document.getElementById('prepararSolo').addEventListener('click', () => itemAtual = "enxada");
 document.getElementById('colher').addEventListener('click', () => itemAtual = "foice");
 document.getElementById('regar').addEventListener('click', () => itemAtual = "irrigador");
 document.getElementById("loja").addEventListener("click", abrirLoja);
@@ -25,7 +29,7 @@ document.getElementById("fecharLoja").addEventListener("click", () => {
     document.getElementById("lojaModal").style.display = "none";
 });
 
-let dinheiro = 1000;
+let dinheiro = 0;
 let itemAtual = null;
 
 for (let i = 0; i < 12; i++) {
@@ -41,7 +45,7 @@ for (let i = 0; i < 12; i++) {
             espaco.classList.add("mato");
         }
         else {
-            espaco.classList.add("plantavel");
+            espaco.classList.add("naoplantavel");
         }
         linha.appendChild(espaco);
     }
@@ -54,7 +58,7 @@ jardim.addEventListener("mousedown", (e) => {
 
     if (espaco.classList.contains("pedra") || espaco.classList.contains("mato")) {
         espaco.classList = "";
-        espaco.classList.add("plantavel");
+        espaco.classList.add("naoplantavel");
         return;
     }
 
@@ -62,6 +66,12 @@ jardim.addEventListener("mousedown", (e) => {
         espaco.classList.remove("plantavel");
         espaco.classList.add("plantado");
         espaco.classList.add(itemAtual);
+        return;
+    }
+
+    if (itemAtual === "enxada") {
+        espaco.classList = "";
+        espaco.classList.add("plantavel");
         return;
     }
 
@@ -96,69 +106,15 @@ function passarTempo() {
         nivel++;
         let proximaClassePlanta = planta + String(nivel);
 
-        let teste = stagePlantas.find(planta => planta.planta === proximaClassePlanta)
+        let plantaEncontrada = stagePlantas.find(planta => planta.planta === proximaClassePlanta)
 
-        if (teste) {
+        if (plantaEncontrada) {
             espaco.classList.remove(classePlanta);
             espaco.classList.add(proximaClassePlanta);
             espaco.classList.remove("irrigada");
             espaco.dataset.etapa = 0;
             return;
         }
-        console.log(teste)
-
-        // // Planta 1
-        // if (espaco.classList.contains("abobora1")) {
-        //     espaco.classList.remove("abobora1");
-        //     espaco.classList.add("abobora2");
-        //     espaco.classList.remove("irrigada");
-        //     espaco.dataset.etapa = 0;
-        //     return;
-        // }
-
-        // if (espaco.classList.contains("abobora2")) {
-        //     espaco.classList.remove("abobora2");
-        //     espaco.classList.add("abobora3");
-        //     espaco.classList.remove("irrigada");
-        //     espaco.dataset.etapa = 0;
-        //     return;
-        // }
-
-
-        // // Planta 2
-        // if (espaco.classList.contains("alface1")) {
-        //     espaco.classList.remove("alface1");
-        //     espaco.classList.add("alface2");
-        //     espaco.classList.remove("irrigada");
-        //     espaco.dataset.etapa = 0;
-        //     return;
-        // }
-
-        // if (espaco.classList.contains("alface2")) {
-        //     espaco.classList.remove("alface2");
-        //     espaco.classList.add("alface3");
-        //     espaco.classList.remove("irrigada");
-        //     espaco.dataset.etapa = 0;
-        //     return;
-        // }
-
-
-        // // Planta 3
-        // if (espaco.classList.contains("nabo1")) {
-        //     espaco.classList.remove("nabo1");
-        //     espaco.classList.add("nabo2");
-        //     espaco.classList.remove("irrigada");
-        //     espaco.dataset.etapa = 0;
-        //     return;
-        // }
-
-        // if (espaco.classList.contains("nabo2")) {
-        //     espaco.classList.remove("nabo2");
-        //     espaco.classList.add("nabo3");
-        //     espaco.classList.remove("irrigada");
-        //     espaco.dataset.etapa = 0;
-        //     return;
-        // }
     })
 
     // Plantas que não forem irrigadas/passar muito tempo, viram mato
