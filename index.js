@@ -2,18 +2,18 @@ const jardim = document.getElementById("jardim");
 const stagePlantas = [{ "planta": "abobora1", "stages": 2 }, { "planta": "abobora2", "stages": 2 }, { "planta": "abobora3", "stages": 1 },
 { "planta": "alface1", "stages": 3 }, { "planta": "alface2", "stages": 2 }, { "planta": "alface3", "stages": 2 },
 { "planta": "nabo1", "stages": 3 }, { "planta": "nabo2", "stages": 3 }, { "planta": "nabo3", "stages": 1 },
-{ "planta": "tomate1", "stages": 3 }, { "planta": "tomate2", "stages": 3 }, { "planta": "tomate3", "stages": 1 },
+{ "planta": "trigo1", "stages": 3 }, { "planta": "trigo2", "stages": 3 }, { "planta": "trigo3", "stages": 1 },
 { "planta": "cenoura1", "stages": 3 }, { "planta": "cenoura2", "stages": 3 }, { "planta": "cenoura3", "stages": 1 },
 { "planta": "batata1", "stages": 3 }, { "planta": "batata2", "stages": 3 }, { "planta": "batata3", "stages": 1 },
-{ "planta": "morango1", "stages": 3 }, { "planta": "morango2", "stages": 3 }, { "planta": "morango3", "stages": 1 }];
+{ "planta": "couve1", "stages": 3 }, { "planta": "couve2", "stages": 3 }];
 
 
 let sementesAdquiridas = ["abobora1", "alface1", "nabo1"];
 let sementesDisponiveis = [
-    { nome: "tomate1", preco: 15 },
-    { nome: "cenoura1", preco: 20 },
-    { nome: "batata1", preco: 25 },
-    { nome: "morango1", preco: 30 }
+    { nome: "trigo1", preco: 100 },
+    { nome: "cenoura1", preco: 100 },
+    { nome: "batata1", preco: 200 },
+    { nome: "couve1", preco: 300 }
 ];
 
 
@@ -29,7 +29,7 @@ document.getElementById("fecharLoja").addEventListener("click", () => {
     document.getElementById("lojaModal").style.display = "none";
 });
 
-let dinheiro = 0;
+let dinheiro = 1000;
 let itemAtual = null;
 
 for (let i = 0; i < 12; i++) {
@@ -92,7 +92,7 @@ jardim.addEventListener("mousedown", (e) => {
             dinheiro += 10;
             atualizarDinheiro()
             espaco.classList = "";
-            espaco.classList.add("plantavel");
+            espaco.classList.add("naoplantavel");
             return;
         }
     }

@@ -155,22 +155,78 @@ td {
 
 
 
-.tomate1 {
-    background-image: url(assets/abobora1.png);
+.trigo {
+    background-image: url(assets/trigo1.png);
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-.tomate2 {
-    background-image: url(assets/abobora2.png);
+.trigo2 {
+    background-image: url(assets/trigo2.png);
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-.tomate3 {
-    background-image: url(assets/abobora3.png);
+.trigo3 {
+    background-image: url(assets/trigo3.png);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.cenoura1 {
+    background-image: url(assets/cenoura1.png);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.cenoura2 {
+    background-image: url(assets/cenoura2.png);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.cenoura3 {
+    background-image: url(assets/cenoura3.png);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.batata1 {
+    background-image: url(assets/batata1.png);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.batata2 {
+    background-image: url(assets/batata2.png);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.batata3 {
+    background-image: url(assets/batata3.png);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.couve1 {
+    background-image: url(assets/couve1.png);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.couve2 {
+    background-image: url(assets/couve2.png);
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
