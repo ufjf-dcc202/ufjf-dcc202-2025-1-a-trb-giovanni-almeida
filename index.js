@@ -29,7 +29,7 @@ document.getElementById("fecharLoja").addEventListener("click", () => {
     document.getElementById("lojaModal").style.display = "none";
 });
 
-let dinheiro = 1000;
+let dinheiro = 0;
 let itemAtual = null;
 
 for (let i = 0; i < 12; i++) {
@@ -89,10 +89,20 @@ jardim.addEventListener("mousedown", (e) => {
     }
 
     if (itemAtual === "foice") {
-        if (espaco.classList.contains("abobora3") || espaco.classList.contains("alface3") || espaco.classList.contains("nabo3") ||
-            espaco.classList.contains("trigo3") || espaco.classList.contains("cenoura3") || espaco.classList.contains("batata3") || espaco.classList.contains("couve2")) {
-            dinheiro += 10;
-            atualizarDinheiro()
+        let preco = {
+            "abobora3": 10,
+            "alface3": 12,
+            "nabo3": 8,
+            "trigo3": 19,
+            "cenoura3": 25,
+            "batata3": 33,
+            "couve2": 41
+        }
+        let planta = espaco.classList[1];
+
+        if (planta in preco) {
+            dinheiro += preco[planta];
+            atualizarDinheiro();
             espaco.classList = "";
             espaco.classList.add("naoplantavel");
             return;
