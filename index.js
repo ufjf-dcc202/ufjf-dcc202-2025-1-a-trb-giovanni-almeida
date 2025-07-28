@@ -175,7 +175,20 @@ function atribuirSemente(semente) {
         return;
     }
 
-    const botoes = [document.getElementById("semente1"), document.getElementById("semente2"), document.getElementById("semente3")];
+    const botoes = [
+        document.getElementById("semente1"),
+        document.getElementById("semente2"),
+        document.getElementById("semente3")
+    ];
+
+    // Verificar se essa semente já está em algum outro botão
+    const jaExiste = botoes.some((botao, index) => botao.dataset.semente === semente && index !== (slot - 1));
+    if (jaExiste) {
+        alert(`Essa semente (${semente.charAt(0).toUpperCase() + semente.slice(1, -1)}) já está atribuída a outro botão!`);
+        return;
+    }
+
+    // Atribuir ao botão escolhido
     const botaoEscolhido = botoes[slot - 1];
     botaoEscolhido.textContent = `${semente.charAt(0).toUpperCase() + semente.slice(1, -1)}`;
     botaoEscolhido.dataset.semente = semente; // salva nome para uso no plantio
