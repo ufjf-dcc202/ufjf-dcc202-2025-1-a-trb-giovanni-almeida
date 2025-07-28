@@ -152,6 +152,29 @@ td {
     background-position: center;
     background-repeat: no-repeat;
 }
+
+
+
+.tomate1 {
+    background-image: url(assets/abobora1.png);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.tomate2 {
+    background-image: url(assets/abobora2.png);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.tomate3 {
+    background-image: url(assets/abobora3.png);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 /* FIM - PLANTAS */
 
 

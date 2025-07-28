@@ -1,8 +1,9 @@
 const jardim = document.getElementById("jardim");
 const stagePlantas = [{ "planta": "abobora1", "stages": 2 }, { "planta": "abobora2", "stages": 2 }, { "planta": "abobora3", "stages": 1 },
-    { "planta": "alface1", "stages": 3 }, { "planta": "alface2", "stages": 2 }, { "planta": "alface3", "stages": 2 },
-    { "planta": "nabo1", "stages": 3 }, { "planta": "nabo2", "stages": 3 }, { "planta": "nabo3", "stages": 1 }];
-    
+{ "planta": "alface1", "stages": 3 }, { "planta": "alface2", "stages": 2 }, { "planta": "alface3", "stages": 2 },
+{ "planta": "nabo1", "stages": 3 }, { "planta": "nabo2", "stages": 3 }, { "planta": "nabo3", "stages": 1 },
+{ "planta": "tomate1", "stages": 3 }, { "planta": "tomate2", "stages": 3 }, { "planta": "tomate3", "stages": 1 }];
+
 let sementesAdquiridas = ["abobora1", "alface1", "nabo1"];
 let sementesDisponiveis = [
     { nome: "tomate1", preco: 15 },
@@ -14,9 +15,9 @@ let sementesDisponiveis = [
 
 
 document.getElementById('passarTempo').addEventListener('click', passarTempo);
-document.getElementById('semente1').addEventListener('click', () => itemAtual = 'abobora1');
-document.getElementById('semente2').addEventListener('click', () => itemAtual = 'alface1');
-document.getElementById('semente3').addEventListener('click', () => itemAtual = 'nabo1');
+document.getElementById('semente1').addEventListener('click', () => itemAtual = document.getElementById('semente1').dataset.semente);
+document.getElementById('semente2').addEventListener('click', () => itemAtual = document.getElementById('semente2').dataset.semente);
+document.getElementById('semente3').addEventListener('click', () => itemAtual = document.getElementById('semente3').dataset.semente);
 document.getElementById('colher').addEventListener('click', () => itemAtual = "foice");
 document.getElementById('regar').addEventListener('click', () => itemAtual = "irrigador");
 document.getElementById("loja").addEventListener("click", abrirLoja);
@@ -24,7 +25,7 @@ document.getElementById("fecharLoja").addEventListener("click", () => {
     document.getElementById("lojaModal").style.display = "none";
 });
 
-let dinheiro = 0;
+let dinheiro = 1000;
 let itemAtual = null;
 
 for (let i = 0; i < 12; i++) {
@@ -89,58 +90,75 @@ jardim.addEventListener("mousedown", (e) => {
 
 function passarTempo() {
     document.querySelectorAll('#jardim td.irrigada').forEach(espaco => {
-        // Planta 1
-        if (espaco.classList.contains("abobora1")) {
-            espaco.classList.remove("abobora1");
-            espaco.classList.add("abobora2");
+        let classePlanta = espaco.classList[1];
+        let planta = classePlanta.slice(0, -1);
+        let nivel = Number(classePlanta.slice(-1));
+        nivel++;
+        let proximaClassePlanta = planta + String(nivel);
+
+        let teste = stagePlantas.find(planta => planta.planta === proximaClassePlanta)
+
+        if (teste) {
+            espaco.classList.remove(classePlanta);
+            espaco.classList.add(proximaClassePlanta);
             espaco.classList.remove("irrigada");
             espaco.dataset.etapa = 0;
             return;
         }
+        console.log(teste)
 
-        if (espaco.classList.contains("abobora2")) {
-            espaco.classList.remove("abobora2");
-            espaco.classList.add("abobora3");
-            espaco.classList.remove("irrigada");
-            espaco.dataset.etapa = 0;
-            return;
-        }
+        // // Planta 1
+        // if (espaco.classList.contains("abobora1")) {
+        //     espaco.classList.remove("abobora1");
+        //     espaco.classList.add("abobora2");
+        //     espaco.classList.remove("irrigada");
+        //     espaco.dataset.etapa = 0;
+        //     return;
+        // }
 
-
-        // Planta 2
-        if (espaco.classList.contains("alface1")) {
-            espaco.classList.remove("alface1");
-            espaco.classList.add("alface2");
-            espaco.classList.remove("irrigada");
-            espaco.dataset.etapa = 0;
-            return;
-        }
-
-        if (espaco.classList.contains("alface2")) {
-            espaco.classList.remove("alface2");
-            espaco.classList.add("alface3");
-            espaco.classList.remove("irrigada");
-            espaco.dataset.etapa = 0;
-            return;
-        }
+        // if (espaco.classList.contains("abobora2")) {
+        //     espaco.classList.remove("abobora2");
+        //     espaco.classList.add("abobora3");
+        //     espaco.classList.remove("irrigada");
+        //     espaco.dataset.etapa = 0;
+        //     return;
+        // }
 
 
-        // Planta 3
-        if (espaco.classList.contains("nabo1")) {
-            espaco.classList.remove("nabo1");
-            espaco.classList.add("nabo2");
-            espaco.classList.remove("irrigada");
-            espaco.dataset.etapa = 0;
-            return;
-        }
+        // // Planta 2
+        // if (espaco.classList.contains("alface1")) {
+        //     espaco.classList.remove("alface1");
+        //     espaco.classList.add("alface2");
+        //     espaco.classList.remove("irrigada");
+        //     espaco.dataset.etapa = 0;
+        //     return;
+        // }
 
-        if (espaco.classList.contains("nabo2")) {
-            espaco.classList.remove("nabo2");
-            espaco.classList.add("nabo3");
-            espaco.classList.remove("irrigada");
-            espaco.dataset.etapa = 0;
-            return;
-        }
+        // if (espaco.classList.contains("alface2")) {
+        //     espaco.classList.remove("alface2");
+        //     espaco.classList.add("alface3");
+        //     espaco.classList.remove("irrigada");
+        //     espaco.dataset.etapa = 0;
+        //     return;
+        // }
+
+
+        // // Planta 3
+        // if (espaco.classList.contains("nabo1")) {
+        //     espaco.classList.remove("nabo1");
+        //     espaco.classList.add("nabo2");
+        //     espaco.classList.remove("irrigada");
+        //     espaco.dataset.etapa = 0;
+        //     return;
+        // }
+
+        // if (espaco.classList.contains("nabo2")) {
+        //     espaco.classList.remove("nabo2");
+        //     espaco.classList.add("nabo3");
+        //     espaco.classList.remove("irrigada");
+        //     espaco.dataset.etapa = 0;
+        //     return;
+        // }
     })
 
     // Plantas que não forem irrigadas/passar muito tempo, viram mato
@@ -165,7 +183,7 @@ function abrirLoja() {
     sementesAdquiridas.forEach(semente => {
         const botao = document.createElement("button");
         botao.textContent = `${semente.charAt(0).toUpperCase() + semente.slice(1, -1)}`;
-        botao.addEventListener("click", () => comprarSemente(semente));
+        botao.addEventListener("click", () => atribuirSemente(semente));
         lista.appendChild(botao);
     });
 
@@ -187,10 +205,13 @@ function comprarSemente(semente) {
     atualizarDinheiro();
     sementesDisponiveis = sementesDisponiveis.filter(sementeDisponivel => sementeDisponivel.nome !== semente.nome);
     sementesAdquiridas.push(semente.nome);
-    console.log(sementesDisponiveis)
-    
 
+    console.log(sementesAdquiridas)
 
+    atribuirSemente(semente.nome);
+}
+
+function atribuirSemente(semente) {
     // Escolher botão (1,2,3) para substituir
     const slot = prompt("Qual botão você quer substituir? (1, 2 ou 3)");
     if (slot < 1 || slot > 3) {
@@ -200,9 +221,9 @@ function comprarSemente(semente) {
 
     const botoes = [document.getElementById("semente1"), document.getElementById("semente2"), document.getElementById("semente3")];
     const botaoEscolhido = botoes[slot - 1];
-    botaoEscolhido.textContent = semente.nome;
-    botaoEscolhido.dataset.semente = semente.nome; // salva nome para uso no plantio
+    botaoEscolhido.textContent = `${semente.charAt(0).toUpperCase() + semente.slice(1, -1)}`;
+    botaoEscolhido.dataset.semente = semente; // salva nome para uso no plantio
 
-    alert(`${semente.nome} comprada e atribuída ao botão ${slot}!`);
+    alert(`Semente de ${semente.charAt(0).toUpperCase() + semente.slice(1, -1)} atribuída ao botão ${slot}!`);
     document.getElementById("lojaModal").style.display = "none";
 }
