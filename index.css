@@ -60,7 +60,6 @@ table {
     height: 80%;
     border-collapse: collapse;
     margin: 10px;
-    background-color: #7cfc00;
     text-align: center;
     margin-left: 180px; /* Espaço para a sidebar */
 }
@@ -73,7 +72,7 @@ td {
 
 .pedra {
     background-image: url(assets/pedra.png);
-    background-color: #f7a350;
+    background-color: #1b5500;
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -81,7 +80,7 @@ td {
 
 .mato {
     background-image: url(assets/mato.png);
-    background-color: #f7a350;
+    background-color: #1b5500;
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -236,19 +235,19 @@ td {
 
 /* INÍCIO - ESTADOS */
 .naoplantavel {
-    background-color: #f7a350;
+    background-color: #1b5500;
 }
 
 .plantavel {
-    background-color: #e28c37;
+    background-color: #2f9600;
 }
 
 .plantado {
-    background-color: #b86f27;
+    background-color: #78ff39;
 }
 
 .irrigada {
-    background-color: #915419
+    background-color: #78ff396b;
 }
 /* FIM - ESTADOS */
 

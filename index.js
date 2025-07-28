@@ -77,7 +77,8 @@ jardim.addEventListener("mousedown", (e) => {
 
     if (itemAtual === "irrigador") {
         // Última etapa, a planta não é regada
-        if (espaco.classList.contains("abobora3") || espaco.classList.contains("alface3") || espaco.classList.contains("nabo3")) {
+        if (espaco.classList.contains("abobora3") || espaco.classList.contains("alface3") || espaco.classList.contains("nabo3") ||
+            espaco.classList.contains("trigo3") || espaco.classList.contains("cenoura3") || espaco.classList.contains("batata3") || espaco.classList.contains("couve2")) {
             return;
         }
 
@@ -88,7 +89,8 @@ jardim.addEventListener("mousedown", (e) => {
     }
 
     if (itemAtual === "foice") {
-        if (espaco.classList.contains("abobora3") || espaco.classList.contains("alface3") || espaco.classList.contains("nabo3")) {
+        if (espaco.classList.contains("abobora3") || espaco.classList.contains("alface3") || espaco.classList.contains("nabo3") ||
+            espaco.classList.contains("trigo3") || espaco.classList.contains("cenoura3") || espaco.classList.contains("batata3") || espaco.classList.contains("couve2")) {
             dinheiro += 10;
             atualizarDinheiro()
             espaco.classList = "";
@@ -161,8 +163,6 @@ function comprarSemente(semente) {
     atualizarDinheiro();
     sementesDisponiveis = sementesDisponiveis.filter(sementeDisponivel => sementeDisponivel.nome !== semente.nome);
     sementesAdquiridas.push(semente.nome);
-
-    console.log(sementesAdquiridas)
 
     atribuirSemente(semente.nome);
 }
